@@ -3,7 +3,13 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
 
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ["Poppins", "Sans-serif"],
+        dancing: ["Dancing Script"],
+        roboto: ["Roboto", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+    @apply font-poppins
+}
+.active-link {
+    @apply border-b-2 border-red-500 py-1 text-red-500  duration-200;
+}
+.links a {
+    @apply hover:border-b-2 hover:border-red-500 py-1 duration-300 hover:text-red-500; 
+}
+
+.active-nav {
+    @apply h-[180px] opacity-100  duration-300 ;
+}
+.off-nav {
+    @apply h-0 opacity-0 duration-300;
+}
