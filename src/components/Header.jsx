@@ -7,8 +7,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
-      <header className="p-4 lg:justify-around flex items-center justify-between border-b-2 shadow-md sticky top-0 z-50">
+    <div className="sticky top-0 z-50 bg-white">
+      <header className="p-4 lg:justify-around flex items-center justify-between border-b-2 shadow-md ">
         <div>
           <Link to={"/"} className="flex items-center gap-2 text-2xl">
             <AiFillHome className="text-red-500" />

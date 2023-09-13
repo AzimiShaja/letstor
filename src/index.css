@@ -17,3 +17,6 @@
 .off-nav {
     @apply h-0 opacity-0 duration-300;
 }
+form input {
+    @apply  p-3 bg-white rounded-md ;
+}

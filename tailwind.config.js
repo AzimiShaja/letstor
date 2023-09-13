@@ -9,6 +9,9 @@ export default {
         dancing: ["Dancing Script"],
         roboto: ["Roboto", "sans-serif"],
       },
+      colors: {
+        primary: "#f0fdf4",
+      },
     },
   },
   plugins: [],
