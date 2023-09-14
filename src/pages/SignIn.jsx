@@ -1,9 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { AiOutlineMinus, AiOutlineUser } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineUser } from "react-icons/ai";
 import { useState } from "react";
 import OAuth from "../components/OAuth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { toast } from "react-toastify";
+
 const SignIn = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,6 +18,22 @@ const SignIn = () => {
       ...prev,
       [ev.target.id]: ev.target.value,
     }));
+  };
+  const onSubmitHandler = async (ev) => {
+    ev.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (userCredential.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Bad user crediantials");
+    }
   };
 
   const { email, password } = formData;
@@ -28,7 +48,7 @@ const SignIn = () => {
       </div>
 
       <div className="max-w-[500px]">
-        <form className="flex flex-col gap-3 w-full">
+        <form onSubmit={onSubmitHandler} className="flex flex-col gap-3 w-full">
           <input
             type="email"
             placeholder="Email"
