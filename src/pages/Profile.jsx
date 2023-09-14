@@ -1,20 +1,51 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, updateCurrentUser, updateProfile } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const auth = getAuth();
   const navigate = useNavigate();
+  const [changeDetail, setChangeDetail] = useState(false);
   const [formData, setFormData] = useState({
-    name: "test",
-    email: "test@gmail.com",
+    name: auth.currentUser.displayName,
+    email: auth.currentUser.email,
   });
 
   const logoutHandler = () => {
     auth.signOut();
     navigate("/");
   };
+  const onChangeHandler = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.id]: [e.target.value],
+    }));
+  };
+
+  async function onSubmit() {
+    try {
+      if (auth.currentUser.displayName !== name) {
+        // update display name in firebase auth
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+
+        // update name in the firestore
+
+        const docRef = doc(db, "users", auth.currentUser.uid);
+        await updateDoc(docRef, {
+          name,
+        });
+      }
+      toast.success("Profile details updated");
+    } catch (error) {
+      toast.error("Could not update the profile details");
+    }
+  }
+
   const { name, email } = formData;
   return (
     <>
@@ -25,15 +56,31 @@ const Profile = () => {
             <label className="text-white" htmlFor="">
               Name:
             </label>
-            <input type="text" id="name" value={name} />
-            <label className="text-white" htmlFor="">
+            <input
+              className={`${changeDetail ? "bg-red-200 focus:bg-red-200" : ""}`}
+              type="text"
+              id="name"
+              value={name}
+              disabled={!changeDetail}
+              onChange={onChangeHandler}
+            />
+            <label className="text-white mt-4" htmlFor="">
               Email:
             </label>
-            <input type="email" id="email" value={email} />
+            <input type="email" id="email" value={email} disabled />
             <div className="flex justify-between items-center my-4 max-md:flex-col gap-3">
               <p className="text-white text-center">
                 Do you want to change your name?
-                <span className="text-red-500 cursor-pointer"> Edit</span>{" "}
+                <span
+                  onClick={() => {
+                    changeDetail && onSubmit();
+                    setChangeDetail((prev) => !prev);
+                  }}
+                  className="text-red-500 cursor-pointer"
+                >
+                  {" "}
+                  {changeDetail ? "Apply change" : "Edit"}
+                </span>{" "}
               </p>
               <p
                 onClick={logoutHandler}
