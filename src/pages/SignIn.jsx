@@ -63,6 +63,11 @@ const SignIn = () => {
             </div>
             <OAuth />
           </div>
+          <div className="text-white flex flex-col items-center mt-10">
+            <p>Demo</p>
+            <p>email: test@gmail.com </p>
+            <p>pass: test2012</p>
+          </div>
         </form>
       </div>
     </div>
