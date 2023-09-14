@@ -1,4 +1,4 @@
-import { getAuth, updateCurrentUser, updateProfile } from "firebase/auth";
+import { getAuth, updateProfile } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { useState } from "react";

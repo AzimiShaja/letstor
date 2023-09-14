@@ -1,10 +1,24 @@
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 const Header = () => {
+  const [pageState, setPageState] = useState("sign in");
   const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const auth = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPageState("profile");
+      } else {
+        setPageState("sign in");
+      }
+    });
+  }, [auth]);
 
   return (
     <div className="sticky top-0 z-50 bg-white">
@@ -29,10 +43,14 @@ const Header = () => {
             Offers
           </a>
           <a
-            className={` ${pathname === "/sign-in" ? "active-link" : ""}`}
-            href="/sign-in"
+            className={` ${
+              pathname === "/sign-in" || pathname === "/profile"
+                ? "active-link"
+                : ""
+            }`}
+            href={`${pageState === "sign in" ? "/sign-in" : "/profile"}`}
           >
-            Sign in
+            {pageState === "sign in" ? "sign in" : "Profile"}
           </a>
         </div>
         <AiOutlineMenu
