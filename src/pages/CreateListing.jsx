@@ -1,7 +1,24 @@
 import React from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../api/firebase";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+
+import Spinner from "../components/Spinner";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const CreateListing = () => {
+  const navigate = useNavigate();
+  const auth = getAuth();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     type: "rent",
     name: "",
@@ -14,6 +31,9 @@ const CreateListing = () => {
     offer: true,
     price: 1,
     discount: 0,
+    images: {},
+    latitude: 0,
+    longitude: 0,
   });
   const {
     type,
@@ -27,18 +47,125 @@ const CreateListing = () => {
     offer,
     price,
     discount,
+    images,
   } = formData;
-  const onChangeHandler = () => {};
 
+  const onChangeHandler = (e) => {
+    let boolean = null;
+    if (e.target.value === "true") {
+      boolean = true;
+    }
+    if (e.target.value === "false") {
+      boolean = false;
+    }
+    // Files
+    if (e.target.files) {
+      setFormData((prevState) => ({
+        ...prevState,
+        images: e.target.files,
+      }));
+    }
+    // Text/Boolean/Number
+    if (!e.target.files) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.id]: boolean ?? e.target.value,
+      }));
+    }
+  };
+
+  const storeImage = async (image) => {
+    return new Promise((resolve, reject) => {
+      const storage = getStorage();
+      const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
+      const storageRef = ref(storage, fileName);
+      const uploadTask = uploadBytesResumable(storageRef, image);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          // Observe state change events such as progress, pause, and resume
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // Handle unsuccessful uploads
+          reject(error);
+        },
+        () => {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
+  };
+
+  const onSubmitHandler = async (ev) => {
+    ev.preventDefault();
+    setLoading(true);
+    if (+discount >= +price) {
+      setLoading(false);
+      toast.error("Discounted price needs to be than less than regular price");
+      return;
+    }
+    if (images.length > 6) {
+      setLoading(false);
+      toast.error("maximum 6 images");
+      return;
+    }
+    const imgUrls = await Promise.all(
+      [...images].map((image) => storeImage(image))
+    ).catch((error) => {
+      setLoading(false);
+      toast.error("images not uploaded");
+      return;
+    });
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+    };
+    delete formDataCopy.images;
+    delete formDataCopy.latitude;
+    delete formDataCopy.longitude;
+
+    !formDataCopy.offer && delete formDataCopy.discount;
+
+    const docRef = await addDoc(collection(db, "listings"), formDataCopy);
+    setLoading(false);
+    toast.success("Listing created");
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
+  };
+
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div className="py-10 bg-slate-900 h-full text-white flex flex-col items-center gap-5">
       <h1 className="text-3xl  font-bold text-center">Create a Listing</h1>
-      <form className="my-10 flex flex-col min-w-[300px]  gap-5">
+      <form
+        onSubmit={onSubmitHandler}
+        className="my-10 flex flex-col min-w-[300px]  gap-5"
+      >
         <div className="flex items-start flex-col gap-3">
           <p className="text-lg font-semibold">Sale / Rent</p>
           <div className="flex w-full  justify-between">
             <button
               type="button"
+              id="type"
+              value={"sale"}
+              onClick={onChangeHandler}
               className={`${
                 type === "sale"
                   ? "bg-blue-700 text-white"
@@ -48,6 +175,9 @@ const CreateListing = () => {
               Sale
             </button>
             <button
+              id="type"
+              value={"rent"}
+              onClick={onChangeHandler}
               type="button"
               className={`${
                 type === "rent"
@@ -59,23 +189,35 @@ const CreateListing = () => {
             </button>
           </div>
         </div>
+        <div className="flex flex-col gap-3">
+          <p className="text-lg font-semibold">Name</p>
+          <input
+            id="name"
+            value={name}
+            name="address"
+            className="rounded-md w-full text-black"
+            onChange={onChangeHandler}
+          ></input>
+        </div>
         <div className="flex w-full justify-between gap-4">
           <div>
             <p>Beds</p>
             <input
+              id="beds"
               type="number"
               className="max-w-[135px] text-black text-center"
               value={beds}
-              onChange={onchange}
+              onChange={onChangeHandler}
             />
           </div>
           <div>
             <p>Baths</p>
             <input
+              id="baths"
               type="number"
               className=" text-center max-w-[135px] text-black"
               value={baths}
-              onChange={onchange}
+              onChange={onChangeHandler}
             />
           </div>
         </div>
@@ -83,8 +225,10 @@ const CreateListing = () => {
           <p className="text-lg font-semibold">Parking spot</p>
           <div className="flex w-full  justify-between">
             <button
+              id="parking"
+              onClick={onChangeHandler}
               type="button"
-              value={true}
+              value={"true"}
               className={`${
                 parking ? "bg-blue-700 text-white" : " bg-white text-black"
               }  py-2 px-4 min-w-[135px] rounded-sm`}
@@ -92,8 +236,10 @@ const CreateListing = () => {
               Yes
             </button>
             <button
+              id="parking"
+              onClick={onChangeHandler}
               type="button"
-              value={false}
+              value={"false"}
               className={`${
                 !parking ? "bg-blue-700 text-white" : "bg-white text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
@@ -106,8 +252,10 @@ const CreateListing = () => {
           <p className="text-lg font-semibold">Furniture</p>
           <div className="flex w-full  justify-between">
             <button
+              id="furnished"
+              onClick={onChangeHandler}
               type="button"
-              value={true}
+              value={"true"}
               className={`${
                 furnished ? "bg-blue-700 text-white" : "bg-white text-black"
               }  py-2 px-4 min-w-[135px] rounded-sm`}
@@ -115,8 +263,10 @@ const CreateListing = () => {
               Yes{" "}
             </button>
             <button
+              id="furnished"
               type="button"
-              value={false}
+              value={"false"}
+              onClick={onChangeHandler}
               className={`${
                 !furnished ? "bg-blue-700 text-white" : "bg-white text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
@@ -129,9 +279,9 @@ const CreateListing = () => {
           <p className="text-lg font-semibold">Address</p>
           <textarea
             value={address}
-            name="address"
+            id="address"
             className="rounded-md w-full text-black"
-            onChange={onchange}
+            onChange={onChangeHandler}
           ></textarea>
         </div>
         <div className="flex flex-col gap-3">
@@ -140,13 +290,15 @@ const CreateListing = () => {
             value={description}
             className="rounded-md w-full text-black"
             id="description"
-            onChange={onchange}
+            onChange={onChangeHandler}
           ></textarea>
         </div>
         <div className="flex items-start flex-col gap-3">
           <p className="text-lg font-semibold">Offer</p>
           <div className="flex w-full  justify-between">
             <button
+              id="offer"
+              onClick={onChangeHandler}
               type="button"
               value={true}
               className={`${
@@ -156,6 +308,8 @@ const CreateListing = () => {
               Yes
             </button>
             <button
+              id="offer"
+              onClick={onChangeHandler}
               type="button"
               value={false}
               className={`${
@@ -173,8 +327,9 @@ const CreateListing = () => {
               <input
                 type="number"
                 className=" text-center max-w-[135px] text-black"
+                id="price"
                 value={price}
-                onChange={onchange}
+                onChange={onChangeHandler}
               />
             </div>
             {type !== "sale" ? (
@@ -192,8 +347,9 @@ const CreateListing = () => {
             <input
               type="number"
               className=" text-center max-w-[135px] text-black"
+              id="discount"
               value={discount}
-              onChange={onchange}
+              onChange={onChangeHandler}
             />
           </div>
         ) : (
@@ -210,7 +366,7 @@ const CreateListing = () => {
             type="file"
             id="images"
             className="text-black"
-            onchange={onchange}
+            onChange={onChangeHandler}
             accept=".jpg, .png, .jpeg"
             multiple
             required

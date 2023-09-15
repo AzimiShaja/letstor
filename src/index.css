@@ -20,3 +20,7 @@
 form input {
     @apply  p-3 bg-white rounded-md ;
 }
+
+textarea {
+    @apply p-3 text-lg
+}

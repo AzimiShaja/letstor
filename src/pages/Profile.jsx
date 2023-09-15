@@ -92,7 +92,7 @@ const Profile = () => {
             </div>
           </form>
           <div className="my-10">
-            <Link to={"create-listing"}>
+            <Link to={"/create-listing"}>
               <button
                 type="submit"
                 className="bg-blue-700 p-4 rounded-md w-full flex items-center gap-2  justify-center hover:opacity-90 duration-300"
