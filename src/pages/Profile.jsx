@@ -1,15 +1,28 @@
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { TbHomeStats } from "react-icons/tb";
+import { useEffect } from "react";
+import { db } from "../api/firebase";
+import ListingItem from "../components/ListingItem";
 
 const Profile = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [changeDetail, setChangeDetail] = useState(false);
+  const [listings, setListings] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email,
@@ -46,8 +59,29 @@ const Profile = () => {
       toast.error("Could not update the profile details");
     }
   }
-
   const { name, email } = formData;
+
+  useEffect(() => {
+    async function fetchUserListings() {
+      const listingRef = collection(db, "listings");
+      const q = query(
+        listingRef,
+        where("userRef", "==", auth.currentUser.uid),
+        orderBy("timestamp", "desc")
+      );
+      const querySnap = await getDocs(q);
+      let listingsItem = [];
+      querySnap.forEach((doc) => {
+        return listingsItem.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+      setListings(listingsItem);
+      setLoading(false);
+    }
+    fetchUserListings();
+  }, [auth.currentUser.uid]);
   return (
     <>
       <div className="bg-slate-900 text-white h-full flex flex-col items-center py-10 px-10">
@@ -102,6 +136,22 @@ const Profile = () => {
             </Link>
           </div>
         </div>
+        {!loading && listings.length > 0 && (
+          <div className="flex flex-col items-center gap-10 my-10">
+            <h1 className="text-2xl font-bold">My Listings</h1>
+            <div className="lg:grid-cols-3 xl:grid-cols-5 md:grid-cols-2 grid-cols-1 grid gap-10 ">
+              {listings.map((listing) => {
+                return (
+                  <ListingItem
+                    key={listing.id}
+                    listing={listing.data}
+                    id={listing.id}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
