@@ -2,8 +2,9 @@ import { getAuth, updateProfile } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { TbHomeStats } from "react-icons/tb";
 
 const Profile = () => {
   const auth = getAuth();
@@ -50,7 +51,7 @@ const Profile = () => {
   return (
     <>
       <div className="bg-slate-900 text-white h-full flex flex-col items-center py-10 px-10">
-        <h1 className="text-4xl">My Profile</h1>
+        <h1 className="text-4xl font-bold">My Profile</h1>
         <div className="mt-10 w-full md:w-7/12 lg:w-6/12 xl:w-5/12">
           <form className="flex flex-col gap-2 text-black">
             <label className="text-white" htmlFor="">
@@ -90,6 +91,16 @@ const Profile = () => {
               </p>
             </div>
           </form>
+          <div className="my-10">
+            <Link to={"create-listing"}>
+              <button
+                type="submit"
+                className="bg-blue-700 p-4 rounded-md w-full flex items-center gap-2  justify-center hover:opacity-90 duration-300"
+              >
+                Sell or Rent your house <TbHomeStats className="text-3xl" />
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </>
