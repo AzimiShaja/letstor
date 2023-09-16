@@ -135,7 +135,7 @@ const Profile = () => {
               </p>
               <p
                 onClick={logoutHandler}
-                className="text-white hover:text-red-500 duration-150 cursor-pointer"
+                className="text-white hover:opacity-75 duration-150 cursor-pointer bg-red-600 p-2 rounded-lg"
               >
                 Sign out
               </p>
@@ -155,7 +155,7 @@ const Profile = () => {
         {!loading && listings.length > 0 && (
           <div className="flex flex-col items-center gap-10 my-10">
             <h1 className="text-2xl font-bold">My Listings</h1>
-            <div className="lg:grid-cols-3 xl:grid-cols-5 md:grid-cols-2 grid-cols-1 grid gap-10 ">
+            <div className="lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 grid-cols-1 grid gap-10 ">
               {listings.map((listing) => {
                 return (
                   <ListingItem

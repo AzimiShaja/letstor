@@ -11,10 +11,11 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
       className="bg-white text-slate-900 rounded-md hover:scale-105 duration-300 shadow-sm shadow-gray-50 flex flex-col justify-between"
     >
       <img
-        className="rounded-t-md min-h-[200px] "
+        className="rounded-t-md min-h-[200px] max-h-[200px]"
         src={listing.imgUrls[0]}
         loading="lazy"
       />
+
       <Link
         className="flex  flex-col gap-5 p-3 "
         to={`/category/${listing.type}/${id}`}
@@ -28,9 +29,7 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
           <p className="text-red-600 font-bold">
             $
             {listing.offer
-              ? listing.discount
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              ? listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
               : listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             {listing.type === "rent" && " / month"}
           </p>
@@ -39,12 +38,12 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
       <div className="flex justify-between p-3">
         <div className="flex items-center gap-3">
           <div>
-            <p className="text-md">
+            <p className="text-md font-semibold">
               {listing.beds > 1 ? `${listing.beds} Beds` : `1 Bed`}
             </p>
           </div>
           <div>
-            <p className="text-md">
+            <p className="text-md font-semibold">
               {listing.baths > 1 ? `${listing.baths} Baths` : `1 Baths`}
             </p>
           </div>
