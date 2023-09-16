@@ -12,8 +12,6 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../api/firebase";
-import { getAuth } from "firebase/auth";
-import Spinner from "../components/Spinner";
 
 const Home = () => {
   // Offers
