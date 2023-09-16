@@ -90,11 +90,10 @@ const Profile = () => {
       const updatedListings = listings.filter((listing) => {
         listing.id !== id;
       });
-      setLoading(true);
       setListings(updatedListings);
       toast.success("Item has been deleted successfully");
+      window.location.reload();
     }
-    setLoading(false);
   };
   const onEdit = (id) => {
     navigate(`/edit-listing/${id}`);
