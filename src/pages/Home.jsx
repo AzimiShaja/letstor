@@ -111,7 +111,7 @@ const Home = () => {
       <div className="bg-slate-900 h-full">
         <div className="flex items-center justify-around max-lg:flex-col">
           <div className="p-10 flex flex-col gap-5 items-start">
-            <h1 className="text-white font-bold text-4xl max-w-lg leading-[50px]">
+            <h1 className="text-white font-bold text-4xl max-w-lg leading-[50px] max-lg:text-2xl max-md:text-xl">
               Where dreams find a home and keys unlock new beginnings in the
               world of house renting and selling.
             </h1>
