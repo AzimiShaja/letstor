@@ -36,12 +36,7 @@ const Header = () => {
           <a className={` ${pathname === "/" ? "active-link" : ""}`} href="/">
             Home
           </a>
-          <a
-            className={` ${pathname === "/offers" ? "active-link" : ""}`}
-            href="/offers"
-          >
-            Offers
-          </a>
+
           <a
             className={` ${
               pathname === "/sign-in" || pathname === "/profile"

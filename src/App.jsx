@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Router, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import Offers from "./pages/Offers";
+
 import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import PrivateRoute from "./components/PrivateRoute";
@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -19,7 +20,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/offers" element={<Offers />} />
+
         <Route path="/profile" element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
@@ -44,6 +45,7 @@ const App = () => {
         pauseOnHover
         theme="light"
       />
+      <Footer />
     </>
   );
 };
