@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import ListingItem from "../components/ListingItem";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   collection,
   getDocs,
@@ -14,6 +15,18 @@ import {
 import { db } from "../api/firebase";
 
 const Home = () => {
+  const [pageState, setPageState] = useState("sign in");
+  const auth = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPageState("profile");
+      } else {
+        setPageState("sign in");
+      }
+    });
+  }, [auth]);
   // Offers
   const [offerListings, setOfferListings] = useState(null);
   useEffect(() => {
@@ -113,7 +126,7 @@ const Home = () => {
               Where dreams find a home and keys unlock new beginnings in the
               world of house renting and selling.
             </h1>
-            <Link to={"/offers"}>
+            <Link to={`${pageState === "sign in" ? "/sign-in" : "/profile"}`}>
               <button className="bg-red-500 px-4 py-2 text-white rounded-lg  hover:opacity-75 text-lg">
                 Get started
               </button>

@@ -37,6 +37,42 @@ const SignIn = () => {
   };
 
   const { email, password } = formData;
+
+  const onDemoClickHandler = async (ev) => {
+    ev.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        "test@gmail.com",
+        "test2012"
+      );
+      if (userCredential.user) {
+        navigate("/");
+        toast.info(`You're logged in as a demo1 `);
+      }
+    } catch (error) {
+      toast.error("Bad user crediantials");
+    }
+  };
+
+  const onDemo2ClickHandler = async (ev) => {
+    ev.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        "test1@gmail.com",
+        "test12"
+      );
+      if (userCredential.user) {
+        navigate("/");
+        toast.info(`You're logged in as a demo2 `);
+      }
+    } catch (error) {
+      toast.error("Bad user crediantials");
+    }
+  };
   return (
     <div className="min-h-[925px] bg-slate-900 p-10  flex flex-col items-center justify-center gap-10">
       <div className="flex flex-col items-center gap-3">
@@ -82,11 +118,20 @@ const SignIn = () => {
               <p className="text-center font-semibold mx-4 text-white">OR</p>{" "}
             </div>
             <OAuth />
-          </div>
-          <div className="text-white flex flex-col items-center mt-10">
-            <p>Demo</p>
-            <p>email: test@gmail.com </p>
-            <p>pass: test2012</p>
+            <div className="flex justify-between">
+              <button
+                onClick={onDemoClickHandler}
+                className="bg-green-700   text-white p-3 rounded-lg  hover:opacity-75 duration-300"
+              >
+                Demo login 1
+              </button>
+              <button
+                onClick={onDemo2ClickHandler}
+                className="bg-green-700  text-white p-3 rounded-lg hover:opacity-75 duration-300"
+              >
+                Demo login 2
+              </button>
+            </div>
           </div>
         </form>
       </div>

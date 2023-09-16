@@ -17,7 +17,10 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
         loading="lazy"
       />
 
-      <Link className="flex  flex-col gap-5 p-3 ">
+      <Link
+        to={`/category/${listing.type}/${id}`}
+        className="flex  flex-col gap-5 p-3 "
+      >
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-1 text-md text-gray-500">
             <ImLocation className="text-green-500" />

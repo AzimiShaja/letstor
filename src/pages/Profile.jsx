@@ -17,6 +17,7 @@ import { TbHomeStats } from "react-icons/tb";
 import { useEffect } from "react";
 import { db } from "../api/firebase";
 import ListingItem from "../components/ListingItem";
+import { BsArrowUpShort } from "react-icons/bs";
 
 const Profile = () => {
   const auth = getAuth();
@@ -142,13 +143,19 @@ const Profile = () => {
             </div>
           </form>
           <div className="my-10">
-            <Link to={"/create-listing"}>
+            <Link
+              to={"/create-listing"}
+              className="flex flex-col items-center gap-4"
+            >
               <button
                 type="submit"
                 className="bg-blue-700 p-4 rounded-md w-full flex items-center gap-2  justify-center hover:opacity-90 duration-300"
               >
                 Sell or Rent your house <TbHomeStats className="text-3xl" />
               </button>
+              <div>
+                <BsArrowUpShort className="text-5xl animate-bounce" />
+              </div>
             </Link>
           </div>
         </div>

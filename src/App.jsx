@@ -12,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
-import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -45,7 +44,7 @@ const App = () => {
         pauseOnHover
         theme="light"
       />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
