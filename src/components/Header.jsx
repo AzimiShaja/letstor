@@ -75,10 +75,14 @@ const Header = () => {
           Offers
         </a>
         <a
-          className={` ${pathname === "/sign-in" ? "active-link" : ""}`}
-          href="/sign-in"
+          className={` ${
+            pathname === "/sign-in" || pathname === "/profile"
+              ? "active-link"
+              : ""
+          }`}
+          href={`${pageState === "sign in" ? "/sign-in" : "/profile"}`}
         >
-          Sign in
+          {pageState === "sign in" ? "sign in" : "Profile"}
         </a>
       </div>
     </div>
