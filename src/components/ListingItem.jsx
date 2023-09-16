@@ -6,7 +6,8 @@ import { MdDelete } from "react-icons/md";
 
 const ListingItem = ({ listing, id, onDelete, onEdit }) => {
   return (
-    <div
+    <Link
+      to={`/category/${listing.type}/${id}`}
       id={id}
       className="bg-white text-slate-900 rounded-md hover:scale-105 duration-300 shadow-sm shadow-gray-50 flex flex-col justify-between"
     >
@@ -16,10 +17,7 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
         loading="lazy"
       />
 
-      <Link
-        className="flex  flex-col gap-5 p-3 "
-        to={`/category/${listing.type}/${id}`}
-      >
+      <Link className="flex  flex-col gap-5 p-3 ">
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-1 text-md text-gray-500">
             <ImLocation className="text-green-500" />
@@ -61,7 +59,7 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
