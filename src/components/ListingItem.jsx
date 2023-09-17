@@ -6,22 +6,20 @@ import { MdDelete } from "react-icons/md";
 
 const ListingItem = ({ listing, id, onDelete, onEdit }) => {
   return (
-    <Link
-      to={`/category/${listing.type}/${id}`}
+    <div
       id={id}
       className="bg-white  text-slate-900 rounded-md hover:scale-105 duration-300 flex flex-col justify-between"
     >
-      <img
-        className="rounded-t-md min-h-[200px] max-h-[200px]"
-        src={listing.imgUrls[0]}
-        loading="lazy"
-      />
-
       <Link
         to={`/category/${listing.type}/${id}`}
-        className="flex  flex-col gap-5 p-3 "
+        className="flex  flex-col gap-5 "
       >
-        <div className="flex flex-col gap-3">
+        <img
+          className="rounded-t-md min-h-[200px] max-h-[200px]"
+          src={listing.imgUrls[0]}
+          loading="lazy"
+        />
+        <div className="flex flex-col gap-3 p-3">
           <div className="flex items-center gap-1 text-md text-gray-500">
             <ImLocation className="text-green-500" />
             <p>{listing.address}</p>
@@ -62,7 +60,7 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
           )}
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
