@@ -9,7 +9,7 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
     <Link
       to={`/category/${listing.type}/${id}`}
       id={id}
-      className="bg-white text-slate-900 rounded-md hover:scale-105 duration-300 shadow-sm shadow-gray-50 flex flex-col justify-between"
+      className="bg-white  text-slate-900 rounded-md hover:scale-105 duration-300 flex flex-col justify-between"
     >
       <img
         className="rounded-t-md min-h-[200px] max-h-[200px]"
