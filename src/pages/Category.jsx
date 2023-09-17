@@ -75,15 +75,15 @@ export default function Category() {
       toast.error("Could not fetch listing");
     }
   }
-
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <div className="bg-slate-900 min-h-[1000px] max-md:h-full px-5 lg:px-20 flex flex-col items-center gap-10 py-10">
       <h1 className="text-white text-5xl font-bold">
         {params.categoryName === "rent" ? "Places for rent" : "Places for sale"}
       </h1>
-      {loading ? (
-        <Spinner />
-      ) : listings && listings.length > 0 ? (
+      {!loading && listings && listings.length > 0 ? (
         <>
           <main>
             <ul className="lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 grid-cols-1 grid gap-10 ">
