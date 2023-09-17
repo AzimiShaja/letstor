@@ -114,10 +114,6 @@ const SignIn = () => {
             <button className="bg-blue-500 border border-blue-700 text-white p-3 rounded-lg hover:bg-transparent duration-300">
               Sign in
             </button>
-            <div className="my-4 before:border-t flex before:flex-1 items-center after:border-t  after:flex-1 ">
-              <p className="text-center font-semibold mx-4 text-white">OR</p>{" "}
-            </div>
-            <OAuth />
             <div className="flex justify-between">
               <button
                 onClick={onDemoClickHandler}
@@ -132,6 +128,10 @@ const SignIn = () => {
                 Demo login 2
               </button>
             </div>
+            <div className="my-4 before:border-t flex before:flex-1 items-center after:border-t  after:flex-1 ">
+              <p className="text-center font-semibold mx-4 text-white">OR</p>{" "}
+            </div>
+            <OAuth />
           </div>
         </form>
       </div>
