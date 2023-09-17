@@ -1,5 +1,5 @@
 import React from "react";
-import spinner from "../assets/spinner.svg";
+import spinner from "../assets/preload.svg";
 
 const Spinner = () => {
   return (
