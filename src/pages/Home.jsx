@@ -13,10 +13,12 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../api/firebase";
+import Spinner from "../components/Spinner";
 
 const Home = () => {
   const [pageState, setPageState] = useState("sign in");
   const auth = getAuth();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -111,12 +113,17 @@ const Home = () => {
           });
         });
         setSaleListings(listings);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     }
     fetchListings();
   }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
   return (
     <>
       <div className="bg-slate-900 h-full">

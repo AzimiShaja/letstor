@@ -13,7 +13,6 @@ import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
 import Offers from "./pages/Offers";
-import Category from "./pages/Category";
 
 const App = () => {
   return (
@@ -31,7 +30,6 @@ const App = () => {
           path="/category/:categoryName/:listingId"
           element={<Listing />}
         />
-        <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
