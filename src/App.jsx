@@ -13,6 +13,7 @@ import CreateListing from "./pages/CreateListing";
 import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
 import Offers from "./pages/Offers";
+import Category from "./pages/Category";
 
 const App = () => {
   return (
