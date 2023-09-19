@@ -5,7 +5,7 @@ import { LuContact2 } from "react-icons/lu";
 
 const Feauters = () => {
   return (
-    <div className="flex item-center py-20 flex-col  gap-20">
+    <div className="flex item-center px-5 py-20 flex-col  gap-20">
       <div className="flex flex-col items-center gap-3">
         <h1 className="text-3xl lg:text-[40px] font-bold text-slate-900">
           Find your next perfect place with ease

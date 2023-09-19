@@ -127,9 +127,9 @@ const Home = () => {
   }
   return (
     <>
-      <div className="bg-slate-900 h-[400px] hero  flex px-40 py-20 ">
+      <div className="bg-slate-900 lg:h-[400px] hero  flex lg:px-40 px-4 py-20 ">
         <div className=" max-w-lg flex flex-col gap-5">
-          <h1 className="text-white font-bold text-4xl leading-[50px] max-lg:text-2xl max-md:text-xl">
+          <h1 className="text-white font-bold text-4xl leading-[50px] max-lg:text-2xl max-md:text-lg">
             Where dreams find a <span className="text-slate-900">Home</span> and
             <span className="text-slate-900"> Keys</span> unlock new beginnings
             in the world of house renting and selling.
