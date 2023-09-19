@@ -146,7 +146,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col px-5 lg:px-40">
         {offerListings && offerListings.length > 0 && (
-          <div className=" flex flex-col gap-6 mt-10 border-b py-3 mb-10">
+          <div className=" flex flex-col gap-6 mt-10  py-3 mb-10">
             <div>
               <h2 className="px-3 text-2xl  font-semibold">Recent offers</h2>
               <Link to="/offers">
@@ -170,7 +170,7 @@ const Home = () => {
           </div>
         )}
         {rentListings && rentListings.length > 0 && (
-          <div className=" flex flex-col gap-6 border-b py-3 mb-10">
+          <div className=" flex flex-col gap-6 py-3 mb-10">
             <div>
               {" "}
               <h2 className="px-3 text-2xl font-semibold ">Places for rent</h2>
@@ -195,7 +195,7 @@ const Home = () => {
           </div>
         )}
         {saleListings && saleListings.length > 0 && (
-          <div className=" flex flex-col gap-6  border-b py-3">
+          <div className=" flex flex-col gap-6  py-3">
             <div>
               <h2 className="px-3 text-2xl  font-semibold">Places for sale</h2>
               <Link to="/category/sale">

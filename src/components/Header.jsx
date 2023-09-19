@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 const Header = () => {
   const [pageState, setPageState] = useState("sign in");
   const { pathname } = useLocation();
@@ -22,7 +23,7 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 z-50 bg-white">
-      <header className="p-4 lg:justify-around flex items-center justify-between border-b-2 shadow-md ">
+      <header className="p-4  lg:justify-around flex items-center justify-between border-b-2 shadow-md ">
         <div>
           <Link to={"/"} className="flex items-center gap-2 text-2xl">
             <AiFillHome className="text-red-500" />
@@ -42,6 +43,18 @@ const Header = () => {
           >
             Offers
           </a>
+          <a
+            className={` ${pathname === "/category/sale" ? "active-link" : ""}`}
+            href="/category/sale"
+          >
+            Buy
+          </a>
+          <a
+            className={` ${pathname === "/category/rent" ? "active-link" : ""}`}
+            href="/category/rent"
+          >
+            Rent
+          </a>
 
           <a
             className={` ${
@@ -51,7 +64,11 @@ const Header = () => {
             }`}
             href={`${pageState === "sign in" ? "/sign-in" : "/profile"}`}
           >
-            {pageState === "sign in" ? "sign in" : "Profile"}
+            {pageState === "sign in" ? (
+              "Login"
+            ) : (
+              <FaUser className="text-2xl" />
+            )}
           </a>
         </div>
         <AiOutlineMenu
@@ -74,6 +91,18 @@ const Header = () => {
           href="/offers"
         >
           Offers
+        </a>
+        <a
+          className={` ${pathname === "/category/sale" ? "active-link" : ""}`}
+          href="/category/sale"
+        >
+          Buy
+        </a>
+        <a
+          className={` ${pathname === "/category/rent" ? "active-link" : ""}`}
+          href="/category/rent"
+        >
+          Rent
         </a>
         <a
           className={` ${

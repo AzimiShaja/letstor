@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 * {
-    @apply font-poppins
+@apply font-poppins
 }
 .active-link {
     @apply border-b-2 border-red-500 py-1 text-red-500  duration-200;
@@ -12,7 +12,7 @@
 }
 
 .active-nav {
-    @apply h-[180px] opacity-100  duration-500 ;
+    @apply h-[300px] opacity-100  duration-500 ;
 }
 .off-nav {
     @apply h-0 opacity-0 p-0 duration-500;
@@ -27,10 +27,9 @@ textarea {
 .listing-div {
     &:hover {
         img {
-            transform: scale(1.2);
-            filter: blur(1px); 
-            transition: all 7s;
-            
+            transform: scale(1.1);
+            transition: all 0.1s;
         }
     }
 }
+ 
