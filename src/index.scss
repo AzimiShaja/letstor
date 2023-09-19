@@ -5,10 +5,10 @@
 @apply font-poppins
 }
 .active-link {
-    @apply border-b-2 border-red-500 py-1 text-red-500  duration-200;
+    @apply border-b-2 py-1 font-bold text-red-500  duration-200;
 }
 .links a {
-    @apply hover:border-b-2 hover:border-red-500 py-1 duration-300 hover:text-red-500; 
+    @apply hover:border-b-2 border-gray-300 py-1 duration-300 hover:text-red-500; 
 }
 
 .active-nav {
@@ -32,4 +32,9 @@ textarea {
         }
     }
 }
- 
+.hero {
+    background-image: url("/src/assets/bg.jpg");
+    background-position: center;
+    object-fit: cover;
+    overflow: hidden; /* Hide the content that overflows */
+  }

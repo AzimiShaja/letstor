@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../api/firebase";
 import Spinner from "../components/Spinner";
+import Feauters from "../components/Feauters";
 
 const Home = () => {
   const [pageState, setPageState] = useState("sign in");
@@ -126,25 +127,21 @@ const Home = () => {
   }
   return (
     <>
-      <div className="bg-slate-900 h-full">
-        <div className="flex items-center justify-around max-lg:flex-col">
-          <div className="p-10 flex flex-col gap-5 items-start">
-            <h1 className="text-white font-bold text-4xl max-w-lg leading-[50px] max-lg:text-2xl max-md:text-xl">
-              Where dreams find a home and keys unlock new beginnings in the
-              world of house renting and selling.
-            </h1>
-            <Link to={`${pageState === "sign in" ? "/sign-in" : "/profile"}`}>
-              <button className="bg-red-500 px-4 py-2 text-white rounded-lg  hover:opacity-75 text-lg">
-                Get started
-              </button>
-            </Link>
-          </div>
-          <div>
-            <img className=" lg:max-w-xl" src={bg} />
-          </div>
+      <div className="bg-slate-900 h-[400px] hero  flex px-40 py-20">
+        <div className=" max-w-lg flex flex-col gap-5">
+          <h1 className="text-white font-bold text-4xl leading-[50px] max-lg:text-2xl max-md:text-xl">
+            Where dreams find a <span className="text-slate-900">Home</span> and
+            <span className="text-slate-900"> Keys</span> unlock new beginnings
+            in the world of house renting and selling.
+          </h1>
+          <Link to={`${pageState === "sign in" ? "/sign-in" : "/profile"}`}>
+            <button className=" text-white rounded-lg border px-3 py-1  hover:opacity-75 text-lg">
+              Get started
+            </button>
+          </Link>
         </div>
       </div>
-      <div className="flex flex-col px-5 lg:px-40">
+      <div className="flex flex-col px-5 lg:px-40 ">
         {offerListings && offerListings.length > 0 && (
           <div className=" flex flex-col gap-6 mt-10  py-3 mb-10">
             <div>
@@ -169,6 +166,7 @@ const Home = () => {
             </div>
           </div>
         )}
+        <Feauters />
         {rentListings && rentListings.length > 0 && (
           <div className=" flex flex-col gap-6 py-3 mb-10">
             <div>

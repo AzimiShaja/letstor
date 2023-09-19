@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 z-50 bg-white">
-      <header className="p-4  lg:justify-around flex items-center justify-between border-b-2 shadow-md ">
+      <header className="p-4 lg:justify-around flex items-center justify-between">
         <div>
           <Link to={"/"} className="flex items-center gap-2 text-2xl">
             <AiFillHome className="text-red-500" />
@@ -33,7 +33,7 @@ const Header = () => {
             </h1>
           </Link>
         </div>
-        <div className="flex items-center space-x-10 text-xl max-md:hidden links">
+        <div className="flex items-center space-x-10 text-lg max-md:hidden links">
           <a className={` ${pathname === "/" ? "active-link" : ""}`} href="/">
             Home
           </a>
