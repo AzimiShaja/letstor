@@ -7,8 +7,12 @@ import { db } from "../api/firebase";
 import Spinner from "../components/Spinner";
 import { MdLocationPin } from "react-icons/md";
 import { BiBed, BiBath, BiChair, BiSolidParking } from "react-icons/bi";
+import { getAuth } from "firebase/auth";
+import { toast } from "react-toastify";
 const Listing = () => {
+  const auth = getAuth();
   const params = useParams();
+  const [openForm, setOpenForm] = useState(false);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -35,7 +39,7 @@ const Listing = () => {
           loading="lazy"
         />{" "}
       </div>
-      <div className="flex gap-5 flex-col py-4 max-md:items-center ">
+      <div className="flex  gap-5 flex-col py-4 max-md:items-center ">
         <div className="flex items-center  gap-5 max-md:flex-col">
           <h1 className="text-4xl max-md:text-4xl text-white font-bold max-lg:text-center">
             {listing.name} !{" "}
@@ -85,11 +89,37 @@ const Listing = () => {
             </p>
           )}
         </div>
-        <div>
-          <button className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:opacity-75 max-w-md text-lg">
-            Contact Landlord
-          </button>
-        </div>
+        {!openForm && (
+          <div>
+            <button
+              onClick={() => {
+                setOpenForm(true);
+              }}
+              className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:opacity-75 max-w-md text-lg"
+            >
+              Contact Landlord
+            </button>
+          </div>
+        )}
+
+        {openForm && (
+          <form
+            onSubmit={(ev) => {
+              ev.preventDefault();
+              toast.info("The owner has been recieved your text.");
+            }}
+            className="flex flex-col items-start gap-4"
+          >
+            <textarea
+              required
+              className="rounded-md"
+              placeholder="your message"
+            />
+            <button className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:opacity-75 max-w-md text-lg">
+              send
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

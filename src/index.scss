@@ -24,3 +24,13 @@ form input {
 textarea {
     @apply p-3 text-lg
 }
+.listing-div {
+    &:hover {
+        img {
+            transform: scale(1.2);
+            filter: blur(1px); 
+            transition: all 7s;
+            
+        }
+    }
+}
