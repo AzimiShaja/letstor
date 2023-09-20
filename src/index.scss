@@ -22,7 +22,7 @@ form input {
 }
 
 textarea {
-    @apply p-3 text-lg
+    @apply p-3 text-lg border border-black rounded-md
 }
 .listing-div {
     &:hover {
@@ -37,4 +37,7 @@ textarea {
     background-position: center;
     object-fit: cover;
     overflow: hidden; /* Hide the content that overflows */
+  }
+  .bg{ 
+    background-color: rgba(0,0,0,0.7);
   }

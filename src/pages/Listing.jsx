@@ -8,8 +8,8 @@ import Spinner from "../components/Spinner";
 import { MdLocationPin } from "react-icons/md";
 import { BiBed, BiBath, BiChair, BiSolidParking } from "react-icons/bi";
 import { getAuth } from "firebase/auth";
-import { toast } from "react-toastify";
 import ImageSlider from "../components/Slider";
+import MessagePopup from "../components/MessagePopup";
 const Listing = () => {
   const auth = getAuth();
   const params = useParams();
@@ -96,25 +96,7 @@ const Listing = () => {
             </button>
           </div>
         )}
-
-        {openForm && (
-          <form
-            onSubmit={(ev) => {
-              ev.preventDefault();
-              toast.info("The owner has been recieved your text.");
-            }}
-            className="flex flex-col items-start gap-4"
-          >
-            <textarea
-              required
-              className="rounded-md border border-slate-900"
-              placeholder="your message"
-            />
-            <button className=" px-4 py-2 text-slate-900 border border-slate-900 rounded-lg hover:opacity-75 max-w-md text-lg">
-              send
-            </button>
-          </form>
-        )}
+        <MessagePopup onClick={() => setOpenForm(false)} trigger={openForm} />
       </div>
     </div>
   );
