@@ -55,22 +55,17 @@ const Header = () => {
           >
             Rent
           </a>
-
-          <a
-            className={` ${
-              pathname === "/sign-in" || pathname === "/profile"
-                ? "active-link"
-                : ""
-            }`}
-            href={`${pageState === "sign in" ? "/sign-in" : "/profile"}`}
-          >
-            {pageState === "sign in" ? (
-              "Login"
-            ) : (
-              <FaUser className="text-2xl" />
-            )}
-          </a>
         </div>
+        <a
+          className={` max-md:hidden hover:border-b-2 border-gray-300 py-1 duration-300 hover:text-red-500;  ${
+            pathname === "/sign-in" || pathname === "/profile"
+              ? "active-link"
+              : ""
+          }`}
+          href={`${pageState === "sign in" ? "/sign-in" : "/profile"}`}
+        >
+          {pageState === "sign in" ? "Login" : <FaUser className="text-2xl" />}
+        </a>
         <AiOutlineMenu
           onClick={() => {
             setIsOpen(!isOpen);
