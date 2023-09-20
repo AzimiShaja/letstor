@@ -128,7 +128,7 @@ const Home = () => {
   }
   return (
     <>
-      <div className="bg-slate-900 lg:h-[400px] hero  flex lg:px-40 px-4 py-20 ">
+      <div className="bg-slate-900 lg:h-[600px]  hero  flex lg:px-40 px-4 py-40 ">
         <div className=" max-w-lg flex flex-col gap-5">
           <h1 className="text-white font-bold text-4xl leading-[50px] max-lg:text-2xl max-md:text-lg">
             Where dreams find a <span className="text-slate-900">Home</span> and
