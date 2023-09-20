@@ -9,6 +9,7 @@ import { MdLocationPin } from "react-icons/md";
 import { BiBed, BiBath, BiChair, BiSolidParking } from "react-icons/bi";
 import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
+import ImageSlider from "../components/Slider";
 const Listing = () => {
   const auth = getAuth();
   const params = useParams();
@@ -31,25 +32,19 @@ const Listing = () => {
     return <Spinner />;
   }
   return (
-    <div className="bg-slate-900 h-[1000px] flex max-lg:flex-col px-8 md:px-20 gap-10 items-center justify-center mt-1">
-      <div>
-        <img
-          src={listing.imgUrls[0]}
-          className="w-full overflow-hidden max-h-[500px] object-contain rounded-md"
-          loading="lazy"
-        />{" "}
-      </div>
-      <div className="flex  gap-5 flex-col py-4 max-md:items-center ">
+    <div className=" h-full flex flex-col gap-10">
+      <ImageSlider imgs={listing.imgUrls} />
+      <div className="flex gap-5 flex-col py-4 max-md:items-center  px-8 ">
         <div className="flex items-center  gap-5 max-md:flex-col">
-          <h1 className="text-4xl max-md:text-4xl text-white font-bold max-lg:text-center">
-            {listing.name} !{" "}
+          <h1 className="text-4xl max-md:text-4xl text-slate-900 font-bold max-lg:text-center">
+            {listing.name} !
           </h1>
           <p className="text-blue-500 text-3xl font-bold max-md:text-2xl text-center">
             ${listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             {listing.type === "rent" && " / month"}
           </p>
         </div>
-        <p className="text-gray-400 text-lg  font-light flex items-center gap-1 max-md:text-sm text-center">
+        <p className="text-slate-600 text-lg  font-light flex items-center gap-1 max-md:text-sm text-center">
           {" "}
           <MdLocationPin /> {listing.address}
         </p>
@@ -64,26 +59,26 @@ const Listing = () => {
         )}
 
         <div className="my-4">
-          <p className="text-white text-justify max-w-md text-sm ">
+          <p className="text-slate-900  max-w-md text-sm ">
             <span className="font-bold "> Description- </span>{" "}
             {listing.description}
           </p>
         </div>
         <div className="flex justify-between max-w-md max-md:flex-col gap-4">
-          <p className="text-white flex items-center gap-1 font-bold">
+          <p className="text-slate-900 flex items-center gap-1 font-bold">
             <BiBed className="text-xl" /> {listing.beds} Beds
           </p>
-          <p className="text-white flex items-center gap-1 font-bold">
+          <p className="text-slate-900 flex items-center gap-1 font-bold">
             <BiBath className="text-xl" /> {listing.baths} Baths
           </p>
           {listing.furnished && (
-            <p className="text-white flex items-center gap-1 font-bold">
+            <p className="text-slate-900 flex items-center gap-1 font-bold">
               <BiChair className="text-xl" /> furnished
             </p>
           )}
 
           {listing.parking && (
-            <p className="text-white flex items-center gap-1 font-bold">
+            <p className="text-slate-900 flex items-center gap-1 font-bold">
               <BiSolidParking className="text-xl" />
               Parking spot
             </p>
@@ -112,10 +107,10 @@ const Listing = () => {
           >
             <textarea
               required
-              className="rounded-md"
+              className="rounded-md border border-slate-900"
               placeholder="your message"
             />
-            <button className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:opacity-75 max-w-md text-lg">
+            <button className=" px-4 py-2 text-slate-900 border border-slate-900 rounded-lg hover:opacity-75 max-w-md text-lg">
               send
             </button>
           </form>

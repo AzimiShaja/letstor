@@ -101,13 +101,11 @@ const Profile = () => {
   };
   return (
     <>
-      <div className="bg-slate-900 text-white h-full flex flex-col items-center py-10 px-10">
+      <div className="  h-full flex flex-col items-center py-10 px-10">
         <h1 className="text-4xl font-bold">My Profile</h1>
         <div className="mt-10 w-full md:w-7/12 lg:w-6/12 xl:w-5/12">
           <form className="flex flex-col gap-2 text-black">
-            <label className="text-white" htmlFor="">
-              Name:
-            </label>
+            <label htmlFor="">Name:</label>
             <input
               className={`${changeDetail ? "bg-red-200 focus:bg-red-200" : ""}`}
               type="text"
@@ -116,12 +114,12 @@ const Profile = () => {
               disabled={!changeDetail}
               onChange={onChangeHandler}
             />
-            <label className="text-white mt-4" htmlFor="">
+            <label className=" mt-4" htmlFor="">
               Email:
             </label>
             <input type="email" id="email" value={email} disabled />
             <div className="flex justify-between items-center my-4 max-md:flex-col gap-3">
-              <p className="text-white text-center">
+              <p className=" text-center">
                 Do you want to change your name?
                 <span
                   onClick={() => {
@@ -149,7 +147,7 @@ const Profile = () => {
             >
               <button
                 type="submit"
-                className="bg-blue-700 p-4 rounded-md w-full flex items-center gap-2  justify-center hover:opacity-90 duration-300"
+                className="bg-blue-700 text-white p-4 rounded-md w-full flex items-center gap-2  justify-center hover:opacity-90 duration-300"
               >
                 Sell or Rent your house <TbHomeStats className="text-3xl" />
               </button>

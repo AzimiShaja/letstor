@@ -79,8 +79,8 @@ export default function Category() {
     return <Spinner />;
   }
   return (
-    <div className="bg-slate-900 min-h-[1000px] max-md:h-full px-5 lg:px-20 flex flex-col items-center gap-10 py-10">
-      <h1 className="text-white text-5xl font-bold">
+    <div className=" min-h-[1000px] max-md:h-full px-5 lg:px-20 flex flex-col items-center gap-10 py-10">
+      <h1 className=" text-5xl font-bold">
         {params.categoryName === "rent" ? "Places for rent" : "Places for sale"}
       </h1>
       {!loading && listings && listings.length > 0 ? (

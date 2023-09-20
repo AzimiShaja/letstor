@@ -15,6 +15,7 @@ import {
 import { db } from "../api/firebase";
 import Spinner from "../components/Spinner";
 import Feauters from "../components/Feauters";
+import Pricing from "../components/Pricing";
 
 const Home = () => {
   const [pageState, setPageState] = useState("sign in");
@@ -218,6 +219,7 @@ const Home = () => {
           </div>
         )}
       </div>
+      <Pricing />
     </>
   );
 };
