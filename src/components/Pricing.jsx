@@ -65,7 +65,7 @@ const Pricing = () => {
             </h2>
             <p className="text-md font-light">
               Become a{" "}
-              <span className="text-4xl text-orange-500 font-bold">
+              <span className="text-3xl text-orange-500 font-bold">
                 Real Estater
               </span>
             </p>
