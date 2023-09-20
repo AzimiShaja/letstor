@@ -54,11 +54,11 @@ const SignUp = () => {
 
   const { email, password, name } = formData;
   return (
-    <div className="min-h-[925px] bg-slate-900 p-10  flex flex-col items-center justify-center gap-10">
+    <div className="min-h-[925px]  p-10  flex flex-col items-center justify-center gap-10 ">
       <div className="flex flex-col items-center gap-3">
-        <AiOutlineUser className="text-[5rem] text-white" />
-        <h1 className="text-4xl  font-bold  text-white">Sign up</h1>
-        <p className="text-xl  font-light  text-white">Register account</p>
+        <AiOutlineUser className="text-[5rem] " />
+        <h1 className="text-4xl  font-bold ">Sign up</h1>
+        <p className="text-xl  font-light  ">Register account</p>
       </div>
 
       <div className="max-w-[500px]">
@@ -85,9 +85,9 @@ const SignUp = () => {
             onChange={onChangeHandler}
           />
           <div className="flex w-full justify-between my-4 max-md:flex-col max-md:items-center gap-5">
-            <p className="font-light text-gray-300 text-center">
+            <p className="font-light text-gray-600 text-center">
               Already have an account?{" "}
-              <Link to={"/sign-in"} className=" underline text-white">
+              <Link to={"/sign-in"} className=" underline ">
                 login now
               </Link>
             </p>
