@@ -25,7 +25,10 @@ const MessagePopup = ({ trigger, onClick }) => {
 
   const { name, email, message } = formData;
   return trigger ? (
-    <div className="flex h-screen fixed top-0 left-0 z-50 bg w-full items-center justify-center">
+    <div
+      onClick={onClick}
+      className="flex h-screen fixed top-0 left-0 z-50 bg w-full items-center justify-center"
+    >
       <div className="flex flex-col gap-4 bg-white  fixed p-1 rounded-xl">
         <button className="relative top-0 right-0" onClick={onClick}>
           <AiOutlineClose className="text-3xl hover:text-red-500" />
