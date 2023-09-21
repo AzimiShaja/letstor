@@ -1,8 +1,28 @@
 import React from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { BsDashCircle } from "react-icons/bs";
+import { useState, useEffect } from "react";
 
 const Pricing = () => {
+  const [contendLoaded, setContentLoaded] = useState(false);
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    const revealThreshold = 2500;
+
+    if (scrollPosition > revealThreshold) {
+      setContentLoaded(true);
+    } else {
+      setContentLoaded(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div className="py-20 flex-col flex gap-20 px-8">
       <div className="flex flex-col items-center gap-3">
@@ -14,7 +34,11 @@ const Pricing = () => {
           expert support are always available.
         </p>
       </div>
-      <div className="grid grid-cols-3 lg:px-40 gap-20 max-md:grid-cols-1">
+      <div
+        className={`${
+          contendLoaded ? "animate" : "stop_animating"
+        } grid grid-cols-3 xl:px-40 gap-20 max-md:grid-cols-1 translate-y-full`}
+      >
         <div className="flex flex-col items-center gap-10 bg-gray-100 shadow-xl p-5 min-h-[500px] rounded-xl">
           <div className="flex flex-col items-center gap-3">
             <h1 className="text-red-500 text-2xl font-bold ">Free</h1>
@@ -63,7 +87,7 @@ const Pricing = () => {
             <h2 className="text-lg">
               $<span className="text-4xl">49</span>/Year
             </h2>
-            <p className="text-md font-light">
+            <p className="text-md font-light text-center">
               Become a{" "}
               <span className="text-3xl text-orange-500 font-bold">
                 Real Estater

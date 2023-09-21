@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiSearch, FiCheckCircle } from "react-icons/fi";
 import { BsShieldCheck, BsCashCoin, BsBuildings } from "react-icons/bs";
 import { LuContact2 } from "react-icons/lu";
 
 const Feauters = () => {
+  const [contendLoaded, setContentLoaded] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setContentLoaded(true);
+    }, 400);
+  }, []);
+
   return (
-    <div className="flex item-center px-5 py-20 flex-col  gap-20">
+    <div
+      className={`flex item-center px-5 py-20 flex-col  gap-20 ${
+        contendLoaded ? "animate" : "stop-animating"
+      } translate-y-full`}
+    >
       <div className="flex flex-col items-center gap-3">
         <h1 className="text-3xl lg:text-[40px] font-bold text-slate-900">
           Find your next perfect place with ease

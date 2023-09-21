@@ -14,9 +14,15 @@ import Spinner from "../components/Spinner";
 import ListingItem from "../components/ListingItem";
 
 export default function Offers() {
+  const [contendLoaded, setContentLoaded] = useState(false);
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lastFetchedListing, setLastFetchListing] = useState(null);
+
+  useEffect(() => {
+    setContentLoaded(true);
+  }, []);
+
   useEffect(() => {
     async function fetchListings() {
       try {

@@ -41,3 +41,10 @@ textarea {
   .bg{ 
     background-color: rgba(0,0,0,0.7);
   }
+
+.animate {
+    @apply opacity-100 translate-y-0 transition-all duration-1000;
+}
+.stop_animating{
+    @apply opacity-0 transition-all duration-[1000];
+}
