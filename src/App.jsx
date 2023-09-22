@@ -14,6 +14,7 @@ import EditListing from "./pages/EditListing";
 import Listing from "./pages/Listing";
 import Offers from "./pages/Offers";
 import Category from "./pages/Category";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -48,7 +49,7 @@ const App = () => {
         pauseOnHover
         theme="light"
       />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

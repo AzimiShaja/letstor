@@ -37,7 +37,7 @@ const Pricing = () => {
       <div
         className={`${
           contendLoaded ? "animate" : "stop_animating"
-        } grid grid-cols-3 xl:px-40 gap-20 max-md:grid-cols-1 translate-y-full`}
+        } grid grid-cols-3 xl:px-40 gap-20 max-md:grid-cols-1`}
       >
         <div className="flex flex-col items-center gap-10 bg-gray-100 shadow-xl p-5 min-h-[500px] rounded-xl">
           <div className="flex flex-col items-center gap-3">
