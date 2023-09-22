@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { db } from "../api/firebase";
 import ListingItem from "../components/ListingItem";
 import { BsArrowUpShort } from "react-icons/bs";
+import { FaUserCircle } from "react-icons/fa";
 
 const Profile = () => {
   const auth = getAuth();
@@ -102,7 +103,11 @@ const Profile = () => {
   return (
     <>
       <div className="  h-full flex flex-col items-center py-10 px-10">
-        <h1 className="text-4xl font-bold">My Profile</h1>
+        <div className="flex flex-col items-center  gap-10">
+          <FaUserCircle className="text-[8em] text-gray-700" />
+          <h1 className="text-4xl font-bold">My Profile</h1>
+        </div>
+
         <div className="mt-10 w-full md:w-7/12 lg:w-6/12 xl:w-5/12">
           <form className="flex flex-col gap-2 text-black">
             <label htmlFor="">Name:</label>
