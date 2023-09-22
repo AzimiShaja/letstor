@@ -194,7 +194,7 @@ const EditListing = () => {
     return <Spinner />;
   }
   return (
-    <div className="py-10 bg-slate-900 h-full text-white flex flex-col items-center gap-5">
+    <div className="py-10  h-full flex flex-col items-center gap-5">
       <h1 className="text-3xl  font-bold text-center">Edit Listing</h1>
       <form
         onSubmit={onSubmitHandler}
@@ -208,7 +208,7 @@ const EditListing = () => {
               id="type"
               value={"sale"}
               onClick={onChangeHandler}
-              className={`${
+              className={` border border-black rounded-full ${
                 type === "sale"
                   ? "bg-blue-700 text-white"
                   : "  bg-white text-black"
@@ -221,7 +221,7 @@ const EditListing = () => {
               value={"rent"}
               onClick={onChangeHandler}
               type="button"
-              className={`${
+              className={` border border-black rounded-full ${
                 type === "rent"
                   ? "bg-blue-700 text-white"
                   : "bg-white text-black"
@@ -271,7 +271,7 @@ const EditListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={"true"}
-              className={`${
+              className={`border border-black rounded-full ${
                 parking ? "bg-blue-700 text-white" : " bg-white text-black"
               }  py-2 px-4 min-w-[135px] rounded-sm`}
             >
@@ -282,7 +282,7 @@ const EditListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={"false"}
-              className={`${
+              className={`border border-black rounded-full ${
                 !parking ? "bg-blue-700 text-white" : "bg-white text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
             >
@@ -298,7 +298,7 @@ const EditListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={"true"}
-              className={`${
+              className={`border border-black rounded-full ${
                 furnished ? "bg-blue-700 text-white" : "bg-white text-black"
               }  py-2 px-4 min-w-[135px] rounded-sm`}
             >
@@ -309,7 +309,7 @@ const EditListing = () => {
               type="button"
               value={"false"}
               onClick={onChangeHandler}
-              className={`${
+              className={`border border-black rounded-full ${
                 !furnished ? "bg-blue-700 text-white" : "bg-white text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
             >
@@ -343,7 +343,7 @@ const EditListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={true}
-              className={`${
+              className={`border border-black rounded-full ${
                 offer ? "bg-blue-700 text-white" : " bg-white text-black"
               }  py-2 px-4 min-w-[135px] rounded-sm`}
             >
@@ -354,7 +354,7 @@ const EditListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={false}
-              className={`${
+              className={`border border-black rounded-full ${
                 !offer ? "bg-blue-700 text-white" : "bg-white text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
             >
@@ -417,7 +417,7 @@ const EditListing = () => {
 
         <button
           type="submit"
-          className="bg-red-600 w-full py-3 rounded-md hover:opacity-80 mt-6 active:opacity-60 duration-300"
+          className="bg-red-600 text-white w-full py-3 rounded-md hover:opacity-80 mt-6 active:opacity-60 duration-300"
         >
           Apply changes{" "}
         </button>

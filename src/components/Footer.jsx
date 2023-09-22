@@ -11,11 +11,19 @@ const Footer = () => {
   return (
     <>
       <div className="py-5 border-t flex flex-col items-center gap-5">
-        <div className="flex gap-3 text-3xl text-slate-900">
-          <BiLogoInstagram />
-          <BiLogoGithub />
-          <BiLogoWhatsapp />
-          <BiLogoTwitter />
+        <div className="flex gap-3 text-3xl text-slate-900 socials">
+          <a target={"_blank"} href="https://www.instagram.com/shja.az/">
+            <BiLogoInstagram />
+          </a>
+          <a target={"_blank"} href="https://github.com/AzimiShaja">
+            <BiLogoGithub />
+          </a>
+          <a href="#home">
+            <BiLogoWhatsapp />
+          </a>
+          <a target={"_blank"} href="https://twitter.com/AzimiShja">
+            <BiLogoTwitter />
+          </a>
         </div>
         <div className="flex  flex-col gap-1 items-center">
           <h1>Made with ❤️ By Ahmad Shaja Azimi</h1>

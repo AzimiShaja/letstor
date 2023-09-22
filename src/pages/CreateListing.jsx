@@ -154,7 +154,7 @@ const CreateListing = () => {
     return <Spinner />;
   }
   return (
-    <div className="py-10 bg-slate-900 h-full text-white flex flex-col items-center gap-5">
+    <div className="py-10 h-full  flex flex-col items-center gap-5">
       <h1 className="text-3xl  font-bold text-center">Create a Listing</h1>
       <form
         onSubmit={onSubmitHandler}
@@ -168,7 +168,7 @@ const CreateListing = () => {
               id="type"
               value={"sale"}
               onClick={onChangeHandler}
-              className={`${
+              className={` border-black border rounded-full ${
                 type === "sale"
                   ? "bg-blue-700 text-white"
                   : "  bg-white text-black"
@@ -181,10 +181,10 @@ const CreateListing = () => {
               value={"rent"}
               onClick={onChangeHandler}
               type="button"
-              className={`${
+              className={` border border-black rounded-full ${
                 type === "rent"
                   ? "bg-blue-700 text-white"
-                  : "bg-white text-black"
+                  : "bg-white  text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
             >
               Rent
@@ -231,7 +231,7 @@ const CreateListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={"true"}
-              className={`${
+              className={` border border-black rounded-full ${
                 parking ? "bg-blue-700 text-white" : " bg-white text-black"
               }  py-2 px-4 min-w-[135px] rounded-sm`}
             >
@@ -242,7 +242,7 @@ const CreateListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={"false"}
-              className={`${
+              className={` border border-black rounded-full ${
                 !parking ? "bg-blue-700 text-white" : "bg-white text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
             >
@@ -258,7 +258,7 @@ const CreateListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={"true"}
-              className={`${
+              className={`border border-black rounded-full ${
                 furnished ? "bg-blue-700 text-white" : "bg-white text-black"
               }  py-2 px-4 min-w-[135px] rounded-sm`}
             >
@@ -269,7 +269,7 @@ const CreateListing = () => {
               type="button"
               value={"false"}
               onClick={onChangeHandler}
-              className={`${
+              className={` border border-black rounded-full ${
                 !furnished ? "bg-blue-700 text-white" : "bg-white text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
             >
@@ -303,7 +303,7 @@ const CreateListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={true}
-              className={`${
+              className={`border rounded-full border-black  ${
                 offer ? "bg-blue-700 text-white" : " bg-white text-black"
               }  py-2 px-4 min-w-[135px] rounded-sm`}
             >
@@ -314,7 +314,7 @@ const CreateListing = () => {
               onClick={onChangeHandler}
               type="button"
               value={false}
-              className={`${
+              className={`border border-black rounded-full ${
                 !offer ? "bg-blue-700 text-white" : "bg-white text-black"
               } py-2 px-4 rounded-sm min-w-[135px]`}
             >
@@ -377,7 +377,7 @@ const CreateListing = () => {
 
         <button
           type="submit"
-          className="bg-red-600 w-full py-3 rounded-md hover:opacity-80 mt-6 active:opacity-60 duration-300"
+          className="bg-red-600 text-white w-full py-3 rounded-md hover:opacity-80 mt-6 active:opacity-60 duration-300"
         >
           Create Listing
         </button>

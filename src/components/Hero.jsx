@@ -11,7 +11,7 @@ const Hero = ({ pageState }) => {
   }, []);
 
   return (
-    <div className=" bg-slate-900 lg:h-[600px]  hero  flex lg:px-40 px-4 py-40 ">
+    <div id="home" className=" lg:h-[600px]  hero  flex lg:px-40 px-4 py-40 ">
       <div
         className={` ${
           contendLoaded ? "animate" : "stop_animating"

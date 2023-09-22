@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 * {
-@apply font-poppins
+@apply font-poppins scroll-smooth;
 }
 .active-link {
     @apply border-b-2 py-1 font-bold text-red-500  duration-200;
@@ -47,4 +47,7 @@ textarea {
 }
 .stop_animating{
     @apply opacity-0 transition-all duration-[1000];
+}
+.socials a{
+    @apply hover:scale-125 hover:text-red-600 duration-300; 
 }
