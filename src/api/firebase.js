@@ -6,7 +6,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 // Your web app's Firebase configuration
 const apiKEY = import.meta.env.VITE_API_URL;
 const firebaseConfig = {
-  apiKey: apiKEY,
+  apiKey: "AIzaSyCLlUwcv5C7R0LNInpbzlUkdVsELscQVng",
   authDomain: "letstordb.firebaseapp.com",
   projectId: "letstordb",
   storageBucket: "letstordb.appspot.com",
